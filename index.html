@@ -188,7 +188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-26 01:33:12" itemprop="dateModified" datetime="2020-03-26T01:33:12+08:00">2020-03-26</time>
+                <time title="修改時間：2020-03-26 01:38:25" itemprop="dateModified" datetime="2020-03-26T01:38:25+08:00">2020-03-26</time>
               </span>
 
           
@@ -202,44 +202,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p> <img src="https://miro.medium.com/max/2877/1*mFDjulTQM_h7Jqv3YSvEgw.png" alt="Alt text">  </p>
+          <p><img src="https://miro.medium.com/max/2877/1*mFDjulTQM_h7Jqv3YSvEgw.png" alt="Alt text">  </p>
 <hr>
 <p><strong>作品 <a href="https://jasmin0410.github.io/JavaScript30/Day01%20-%20JavaScript%20Drum%20Kit/">Demo</a></strong><br>開始 JS 30 第一天！<br>第一天課程是要做出～藉由按下鍵盤按鍵來觸發對應音效跟動畫</p>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><ol>
-<li>鍵盤事件觸發音效播放</li>
-<li>樣式改變</li>
-<li>監聽動畫事件結束，樣式回復初始樣式</li>
-</ol>
-<hr>
-<h2 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h2><h3 id="鍵盤監聽事件－keydown"><a href="#鍵盤監聽事件－keydown" class="headerlink" title="鍵盤監聽事件－keydown"></a>鍵盤監聽事件－keydown</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListerner(<span class="string">'keydown'</span>,<span class="function"><span class="title">function</span></span>()&#123;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>使用者按下按鍵時觸發的事件<br>這邊會運用 keyCode ，就是按鍵所對應的數字<br>像是 A → 65 、S→ 83 等等 ( 可參考影片介紹的 <a href="https://keycode.info/" target="_blank" rel="noopener">keycode.info</a> )</p>
-<h3 id="data"><a href="#data" class="headerlink" title="data-*"></a>data-*</h3><p>data-* 是 Html 5 的新特性可以讓使用者自定義屬性<br>使用過後發現真是個好東西！<br>用來在 Html 標籤中塞資料，不論用 JS 或是 CSS 抓取都可以使用<br>( 寫了個範例給大家參考 ➡️ <a href="https://codepen.io/jasmin0410/pen/YzXaZXZ" target="_blank" rel="noopener">程式範例</a></p>
-<p>綜合上面兩者<br>可以利用 keydown 事件取得 keyCode<br>由於 keyCode 都已經被寫入 data-key 中了<br>所以在 JS 就可以帶入 keyCode 值到 data-key 去抓取元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'keydown'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    const keyCode = e.keyCode;</span><br><span class="line">    const audio = document.querySelector(`audio[data-key=<span class="string">'$&#123;keyCode&#125;'</span>]`);</span><br><span class="line">    const key = document.querySelector(`.key[data-key=<span class="string">'$&#123;keyCode&#125;'</span>]`);</span><br><span class="line"></span><br><span class="line">    // 對於不要觸發的按鍵，則暫停它們執行</span><br><span class="line">    <span class="keyword">if</span> (!audio) &#123; <span class="built_in">return</span> &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="audio-控制"><a href="#audio-控制" class="headerlink" title="audio 控制"></a>audio 控制</h3><p>音樂播放就交給 audio 處理<br>設定指定音效播放外，還要讓音效都從起始點播放</p>
-<ol>
-<li>audio.play() ： 播放</li>
-<li>audio.currentTime＝seconds 設定從哪一秒開始撥放</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'keydown'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">  const keyCode = e.keyCode;</span><br><span class="line">  const audio = document.querySelector(`audio[data-key=<span class="string">'$&#123;keyCode&#125;'</span>]`);</span><br><span class="line">  const key = document.querySelector(`.key[data-key=<span class="string">'$&#123;keyCode&#125;'</span>]`);</span><br><span class="line">　　</span><br><span class="line">  <span class="keyword">if</span> (!audio) &#123; <span class="built_in">return</span> &#125;</span><br><span class="line"></span><br><span class="line">　　// 指定播放起始點</span><br><span class="line">  audio.currentTime = 0;</span><br><span class="line">  // 音效播放</span><br><span class="line">   audio.play();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="element-classList"><a href="#element-classList" class="headerlink" title="element.classList"></a>element.classList</h3><p>接下來就是當鍵盤被觸發，要改變元素的樣式<br>這部分會使用 element.classList.add(class) 加入樣式　　</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  const key = document.querySelector(`.key[data-key=<span class="string">'$&#123;keyCode&#125;'</span>]`);</span><br><span class="line">  // 加入樣式</span><br><span class="line">  key.classList.add(<span class="string">'playing'</span>);</span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">    </span><br><span class="line">以下也補充 element.classList 的其他事件</span><br><span class="line">1. element.classList.remove(class)：移除 CSS 樣式</span><br><span class="line">2. element.classList.toggle(class)：切換 CSS樣式</span><br><span class="line">3. element.classList.contain(class)：判斷 CSS 樣式是否存在  </span><br><span class="line"></span><br><span class="line"><span class="comment">### 動畫監聽事件－ transitionend</span></span><br><span class="line">transition 結束觸發事件</span><br><span class="line">  </span><br><span class="line">``` bash</span><br><span class="line">document.addEventListener(<span class="string">'transitionend'</span>,<span class="function"><span class="title">function</span></span>()&#123;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>先取得所有 class 等於 key 的元素<br>在對每個元素加上監聽 transition 的事件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const keys = document.querySelectorAll(<span class="string">'.key'</span>);</span><br><span class="line">keys.forEach(key =&gt; </span><br><span class="line"> &#123; key.addEventListener(<span class="string">'transitionend'</span>, reomveStyle) &#125;)</span><br><span class="line"><span class="keyword">function</span> reomveStyle(e) &#123;</span><br><span class="line">     // 判斷 transition 結束</span><br><span class="line">     <span class="keyword">if</span> (e.propertyName !== <span class="string">'transform'</span>) <span class="built_in">return</span>;</span><br><span class="line">     this.classList.remove(<span class="string">'playing'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>transition 事件結束判斷可以印 console.log 查看<br>如下圖所示<br>就會發現 TransitionEvent 結束在 propertyName 為 “transform” 的事件<br>所以就在結束的時間點移除樣式  </p>
-<p><img src="https://miro.medium.com/max/1107/1*zpABgxNC-T3oKVtWkryafw.png" alt="Alt text">  </p>
-<hr>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener">JS 30 Day01</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event" target="_blank" rel="noopener">Document: keydown event</a><br><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes" target="_blank" rel="noopener">Using data attributes</a><br><a href="https://www.w3schools.com/jsref/dom_obj_audio.asp" target="_blank" rel="noopener">HTML DOM Audio Object</a><br><a href="https://www.runoob.com/jsref/prop-element-classlist.html" target="_blank" rel="noopener">HTML DOM classList 属性</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/25/%E3%80%90JS-JavaScript30-Day01-JavaScript-Drum-Kit/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
