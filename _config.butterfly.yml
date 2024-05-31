@@ -1,0 +1,135 @@
+# Top Image
+disable_top_img: true # hide top image
+
+# Style
+background: '#2A629A'
+theme_color:
+  enable: true
+  main: "#2A629A"
+  button_hover: "#003285"
+  text_selection: "#003285"
+  link_color: "#003285"
+
+# Font style
+font:
+  global-font-size: 16px
+  code-font-size: 16px
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  code-font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+
+# Nav
+nav:
+  display_title: true
+  fixed: true 
+
+# Menu
+menu:
+  CATEGORY: /categories/ || 
+  TAGS: /tags/ || 
+  ARCHIVE: /archives/ ||
+
+# Aside
+aside:
+  position: right
+  button: false
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description:
+    button:
+      enable: false
+  card_announcement:
+    enable: false
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date 
+  card_categories:
+    enable: true
+    limit: 10
+    expand: true
+  card_tags:
+    enable: false
+  card_webinfo:
+    enable: false
+    post_count: true
+    last_push_date: false
+
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: false
+
+# About Me
+avatar:
+  img: /img/about/avatar.jpg
+# Link
+social:
+  fa-brands fa-square-instagram: https://www.instagram.com/jaslove_eat || IG ||  "#FF7F3E"
+
+# Post
+post_meta:
+  page:
+    date_type: created 
+    date_format: date 
+    categories: true 
+    tags: false 
+    label: true 
+  post:
+    date_type: created 
+    date_format: date 
+    categories: true 
+    tags: true 
+    label: true 
+index_post_content:
+  method: 2
+  length: 500 # if you set method to 2 or 3, the length need to config
+pangu:
+  enable: false
+  field: post
+
+# Post Cover       
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: both
+  default_cover: 
+
+# Image
+post_asset_folder : true
+marked:
+  prependRoot: true
+  postAsset: true
+photofigcaption: true
+
+# Anchor
+anchor:
+  auto_update: false
+  click_to_scroll: false
+
+# copy settings
+copy:
+  enable: false
+  copyright:
+    enable: false
+    limit_count: 50
+
+post_copyright:
+  enable: true
+  decode: false
+  author_href:
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Share
+sharejs:
+  enable: false
+
+related_post:
+  enable: true
+  limit: 6 
+  date_type: created
