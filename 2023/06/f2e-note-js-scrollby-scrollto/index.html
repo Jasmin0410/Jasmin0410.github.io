@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【JS】ScrollBy &amp; ScrollTo | Jas Note</title><meta name="author" content="Jasmin"><meta name="copyright" content="Jasmin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近做了一個滾動列表功能，來記錄一下使用的 JS 語法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【JS】ScrollBy &amp; ScrollTo">
+<meta property="og:url" content="http://example.com/2023/06/f2e-note-js-scrollby-scrollto/index.html">
+<meta property="og:site_name" content="Jas Note">
+<meta property="og:description" content="最近做了一個滾動列表功能，來記錄一下使用的 JS 語法">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/img/about/avatar.jpg">
+<meta property="article:published_time" content="2023-06-06T11:09:43.836Z">
+<meta property="article:modified_time" content="2024-05-17T15:49:44.734Z">
+<meta property="article:author" content="Jasmin">
+<meta property="article:tag" content="前端筆記">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="scrollby">
+<meta property="article:tag" content="scrollto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/about/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/06/f2e-note-js-scrollby-scrollto/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '載入更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【JS】ScrollBy & ScrollTo',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-17 23:49:44'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/about/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">16</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/categories/"><span> CATEGORY</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> TAGS</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> ARCHIVE</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Jas Note"><span class="site-name">Jas Note</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/categories/"><span> CATEGORY</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> TAGS</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> ARCHIVE</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">【JS】ScrollBy &amp; ScrollTo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">發表於</span><time datetime="2023-06-06T11:09:43.836Z" title="發表於 2023-06-06 19:09:43">2023-06-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%AD%86%E8%A8%98/">前端筆記</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%AD%86%E8%A8%98/JavaScript/">JavaScript</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p><img src="/img/2023/06-06/cover.jpeg"></p>
+<p>最近做了一個滾動列表功能<br>來記錄一下語法～</p>
+<br/>
+
+<h2 id="ScrollBy"><a href="#ScrollBy" class="headerlink" title="ScrollBy"></a>ScrollBy</h2><blockquote>
+<p>滾動多少位置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">scrollBy</span>(x-coord, y-coord)  </span><br><span class="line"><span class="title function_">scrollBy</span>(options)</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<p><img src="/img/2023/06-06/scroll-by.gif"></p>
+<br/>
+
+<h2 id="ScrollTo"><a href="#ScrollTo" class="headerlink" title="ScrollTo"></a>ScrollTo</h2><blockquote>
+<p>滾動到指定的位置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">scrollTo</span>(x-coord, y-coord)  </span><br><span class="line"><span class="title function_">scrollTo</span>(options)</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<p><img src="/img/2023/06-06/scroll-to.gif"></p>
+<br/>
+
+<h2 id="Options-的寫法"><a href="#Options-的寫法" class="headerlink" title="Options 的寫法"></a>Options 的寫法</h2><blockquote>
+<p>如果 top 值為負數代表內容向下滾動；而 left 為負數則是內容向右滾動</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scrollBy / scrollTo  </span><br><span class="line">(&#123;  </span><br><span class="line">  <span class="attr">top</span>: <span class="number">0</span>,  </span><br><span class="line">  <span class="attr">left</span>: <span class="number">100</span>,  </span><br><span class="line">  <span class="attr">behavior</span>: <span class="string">&quot;smooth&quot;</span> (平滑) / <span class="string">&quot;instant&quot;</span> (瞬間) / <span class="string">&quot;auto&quot;</span> (看瀏覽器)  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br/>
+<br/>
+          
+<p>最後，附上 codepan 範例供參考</p>
+<iframe src="https://codepen.io/jasmin0410/embed/jOQNjvX?default-tab=html,result?height=265&theme-id=dark&default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jasmin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章連結: </span><span class="post-copyright-info"><a href="http://example.com/2023/06/f2e-note-js-scrollby-scrollto/">http://example.com/2023/06/f2e-note-js-scrollby-scrollto/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="http://example.com" target="_blank">Jas Note</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E7%AD%86%E8%A8%98/">前端筆記</a><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/scrollby/">scrollby</a><a class="post-meta__tags" href="/tags/scrollto/">scrollto</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/2023-birthday-trip-japan-plan/" title="【日本旅遊】2023 福岡生日之旅 — 行前 ＆ 由布篇"><img class="cover" src="/img/2023/09-08/09-08.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【日本旅遊】2023 福岡生日之旅 — 行前 ＆ 由布篇</div></div></a></div><div class="next-post pull-right"><a href="/2020/03/f2e-note-react-mask-map/" title="【前端筆記】口罩地圖製作紀錄"><img class="cover" src="/img/2020/1____zpIk1rqAYjF__pmIZFUuQw.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【前端筆記】口罩地圖製作紀錄</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相關推薦</span></div><div class="relatedPosts-list"><div><a href="/2020/03/f2e-note-react-mask-map/" title="【前端筆記】口罩地圖製作紀錄"><img class="cover" src="/img/2020/1____zpIk1rqAYjF__pmIZFUuQw.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-01</div><div class="title">【前端筆記】口罩地圖製作紀錄</div></div></a></div><div><a href="/2024/06/f2e-note-hexo-blog-note/" title="【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格"><img class="cover" src="https://res.cloudinary.com/dfugd7mzj/image/upload/blog-image/2024/06-06/cover_jcwryk.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-06</div><div class="title">【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/about/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jasmin</div><div class="author-info__description">不務正業的前端女子</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">16</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://www.instagram.com/jaslove_eat" target="_blank" title="IG"><i class="fa-brands fa-square-instagram" style="color: #FF7F3E;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ScrollBy"><span class="toc-number">1.</span> <span class="toc-text">ScrollBy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ScrollTo"><span class="toc-number">2.</span> <span class="toc-text">ScrollTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Options-%E7%9A%84%E5%AF%AB%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">Options 的寫法</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/f2e-note-hexo-blog-note/" title="【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格"><img src="https://res.cloudinary.com/dfugd7mzj/image/upload/blog-image/2024/06-06/cover_jcwryk.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格"/></a><div class="content"><a class="title" href="/2024/06/f2e-note-hexo-blog-note/" title="【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格">【前端筆記】擁有自己的小天地！利用 Hexo 來架設部落格</a><time datetime="2024-06-06T15:14:37.000Z" title="發表於 2024-06-06 23:14:37">2024-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/2024-birthday-trip-vietnam-hanoi-day-2/" title="【越南旅遊】河內老城區踩點 Day 2"><img src="https://res.cloudinary.com/dfugd7mzj/image/upload/v1716717883/blog-image/2024/05-26-2/IMG_5122_yzzxxy.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【越南旅遊】河內老城區踩點 Day 2"/></a><div class="content"><a class="title" href="/2024/05/2024-birthday-trip-vietnam-hanoi-day-2/" title="【越南旅遊】河內老城區踩點 Day 2">【越南旅遊】河內老城區踩點 Day 2</a><time datetime="2024-05-26T08:41:29.000Z" title="發表於 2024-05-26 16:41:29">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/2024-birthday-trip-vietnam-hanoi-day-1/" title="【越南旅遊】河內老城區踩點 Day 1"><img src="https://res.cloudinary.com/dfugd7mzj/image/upload/v1716717189/blog-image/2024/05-26-1/C1D12204-75E5-4751-BF80-F8406040B644_uctvlv.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【越南旅遊】河內老城區踩點 Day 1"/></a><div class="content"><a class="title" href="/2024/05/2024-birthday-trip-vietnam-hanoi-day-1/" title="【越南旅遊】河內老城區踩點 Day 1">【越南旅遊】河內老城區踩點 Day 1</a><time datetime="2024-05-26T08:00:29.000Z" title="發表於 2024-05-26 16:00:29">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/2024-birthday-trip-vietnam-hanoi/" title="【越南旅遊】初探越南 · 河內六日行規劃"><img src="https://res.cloudinary.com/dfugd7mzj/image/upload/v1716060969/blog-image/2024/04-25/1_M8V6OmXCaCPQpNrZEpEIUg_qrc0mc.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【越南旅遊】初探越南 · 河內六日行規劃"/></a><div class="content"><a class="title" href="/2024/04/2024-birthday-trip-vietnam-hanoi/" title="【越南旅遊】初探越南 · 河內六日行規劃">【越南旅遊】初探越南 · 河內六日行規劃</a><time datetime="2024-04-24T18:59:20.864Z" title="發表於 2024-04-25 02:59:20">2024-04-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/hongkong-5-days/" title="【香港旅遊】 2024 香港5天4夜 行前規劃"><img src="/img/2024/03-23/03-23.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【香港旅遊】 2024 香港5天4夜 行前規劃"/></a><div class="content"><a class="title" href="/2024/03/hongkong-5-days/" title="【香港旅遊】 2024 香港5天4夜 行前規劃">【香港旅遊】 2024 香港5天4夜 行前規劃</a><time datetime="2024-03-23T06:34:41.921Z" title="發表於 2024-03-23 14:34:41">2024-03-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jasmin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主題 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="返回頂部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
